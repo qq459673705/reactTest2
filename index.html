@@ -7,8 +7,8 @@
   </head>
   <body>
     <div class="container">
-      <p>
-        hello
+      <p class="col-md-12 col-md-offset-2 h1">
+        关于王思聪诅咒女主播并殴打女生事件，你怎么看?
       </p>
       <div id="content">
 
@@ -19,35 +19,13 @@
     <script type="text/javascript" src="libs/js/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/babel">
-      var HelloWorld = React.createClass({
-        getDefaultProps:function(){
-          console.log("getDefaultProps");
-        },
-        getInitialState:function(){
-          console.log("getInitialState")
-          return null
-        },
-        componentWillMount:function(){
-          console.log("componentWillMount")
-        },
-        render:function(obj){
-          console.log("render")
-          return <h1>hello {function(obj){  //注意最后面一定要带上（this）执行此方法，否则根本无效
-            if(obj.props.name){
-              return obj.props.name
-            }else{
-              return "world"
-            }
-          }(this)}</h1>
-        },
-        componentDidMount:function(){
-          console.log("componentDidMount")
-        }
-      })
-      ReactDOM.render(
-        <HelloWorld name="livemore"/>,
-        document.getElementById('content')
-      )
+      // var Comment = React.createClass({
+      //   render:function(){
+      //     return  <div class="col-md-12">
+      //               <p></p>
+      //             </div>
+      //   }
+      // })
     </script>
   </body>
 </html>
