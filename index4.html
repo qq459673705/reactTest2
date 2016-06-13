@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="libs/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+    <title>index4</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="content">
+
+      </div>
+    </div>
+    <script type="text/javascript" src="libs/js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="libs/js/react.js"></script>
+    <script type="text/javascript" src="libs/js/react-dom.js"></script>
+    <script type="text/javascript" src="libs/js/browser.min.js"></script>
+    <script type="text/javascript" src="libs/js/showdown.min.js"></script>
+    <script type="text/babel">
+      var converter = new showdown.Converter()
+      var MarkdownEditor = React.createClass({
+        getInitialState:function(){
+          return {text:"Type some markdown here!"}
+        },
+        handleChange:function(event){
+          this.setState({text:event.target.value})  //此处也可以用 ReactDOM.findDOMNode(this.refs.textarea).value 来代替 event.target.value
+        },
+        render:function(){
+          return  <div>
+                    <h3>Input:</h3>
+                    <textarea onChange={this.handleChange} defaultValue={this.state.text} ref="textarea"></textarea>
+                    <h3>Output:</h3>
+                    <div className="content" dangerouslySetInnerHTML={{__html:converter.makeHtml(this.state.text)}} />
+                  </div>
+        }
+      })
+      ReactDOM.render(<MarkdownEditor/>, document.getElementById('content'))
+    </script>
+  </body>
+</html>
