@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="libs/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+    <meta charset="utf-8">
+    <title>index2</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="content">
+
+      </div>
+    </div>
+    <script type="text/javascript" src="libs/js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="libs/js/react.js"></script>  <!-- 一定要先加载react.js,因为react-dom.js对其产生依赖 -->
+    <script type="text/javascript" src="libs/js/react-dom.js"></script>
+    <script type="text/javascript" src="libs/js/browser.min.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="libs/js/react.js"></script>
+    <script type="text/javascript" src="libs/js/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
+    <script type="text/babel">
+      var Maps = React.createClass({
+        render:function(){
+          var createItem = function(itemText){
+            return <li>{itemText}</li>
+          }
+
+          return <ul>{this.props.items.map(createItem)}</ul>
+        }
+      })
+
+      // var TodoList = React.createClass({
+      //   render: function() {
+      //     var createItem = function(itemText) {
+      //       return <li>{itemText}</li>;
+      //     };
+      //     return <ul>{this.props.items.map(createItem)}</ul>;
+      //   }
+      // });
+
+      var TodoApp = React.createClass({
+        getInitialState:function(){
+          return {items:[], text:''}
+        },
+        handleChange:function(event){
+          this.setState({text:event.target.value})
+        },
+        handleSubmit:function(event){
+          event.preventDefault()
+          var nextItem = this.state.items.concat([this.state.text])
+          var nextText = '';
+          this.setState({items:nextItem, text:nextText})
+        },
+        render:function(){
+          return  <div>
+                    <Maps items={this.state.items}></Maps>
+                    <form onSubmit={this.handleSubmit}>
+                      <input type="text" onChange={this.handleChange} value={this.state.text} />
+                      <button>{'add#' + (this.state.items.length + 1)}</button>
+                    </form>
+                  </div>
+        }
+      })
+
+      ReactDOM.render(<TodoApp/>, document.getElementById('content'))
+    </script>
+  </body>
+</html>
